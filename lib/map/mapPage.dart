@@ -1,5 +1,6 @@
 import 'package:amap_base/amap_base.dart';
 import 'package:flutter/material.dart';
+import '../single/themeSingle.dart';
 
 const polylineList = const [
   LatLng(39.999391, 116.135972),
@@ -19,13 +20,44 @@ class DrawPolylineScreen extends StatefulWidget {
 class _DrawPolylineScreenState extends State<DrawPolylineScreen> {
   AMapController _controller;
   MyLocationStyle _myLocationStyle = MyLocationStyle();
+  ThemeSingelManager themeSingelManager = new ThemeSingelManager();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('地图'),
-        backgroundColor: Colors.black,
+        backgroundColor: themeSingelManager.getThemeColor(),
         centerTitle: true,
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: new PopupMenuButton(
+              
+              padding: EdgeInsets.only(top: 64.0),
+              child: Image(
+                image: AssetImage("images/展开栏@2x.png"),
+                height: 25.0,
+                width: 25.0,
+              ),
+              itemBuilder:(BuildContext context){
+                return <PopupMenuItem<String>>[
+                PopupMenuItem<String>(
+                  child: ListTile(
+                    title: Text('行车围栏'),
+                    leading: Image(
+                      image: AssetImage('images/展开栏@2x.png'),
+                    ),
+                  ),
+                  value: "hot",
+                ),
+                PopupMenuItem<String>(child: Text("最新"), value: "new",),
+              ];
+                
+              } ,
+            )
+          ),
+          
+        ],
       ),
       body: AMapView(
         onAMapViewCreated: (controller) {

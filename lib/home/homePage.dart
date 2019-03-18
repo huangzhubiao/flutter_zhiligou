@@ -6,6 +6,7 @@ import '../redux/MyState.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../single/themeSingle.dart';
 import '../map/mapPage.dart';
+import 'painterLine.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -127,8 +128,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
       builder: (context,store){
 
         ThemeSingelManager themeSingelManager =store.state.themeSingelManager;
-        print("them homepage = ${themeSingelManager.getImageName()}");
-
         return new Scaffold(
           backgroundColor: Colors.white,
           resizeToAvoidBottomPadding: false,
@@ -359,29 +358,39 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                               flex: 1,
                             ),
                             Expanded(
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      '温度',
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Colors.white
+                              child: GestureDetector(
+                                onTap: (){
+                                  print('helloworld');
+                                  Navigator.of(context).push(new MaterialPageRoute(
+                                    builder:(_){
+                                      return new MyPainterLine();
+                                    }
+                                  ));
+                                },
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Text(
+                                        '温度',
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          color: Colors.white
+                                        ),
                                       ),
+                                      flex: 1,
                                     ),
-                                    flex: 1,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      '25°C',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.red,
+                                    Expanded(
+                                      child: Text(
+                                        '25°C',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                        ),
                                       ),
-                                    ),
-                                    flex: 1,
-                                  )
-                                ],
+                                      flex: 1,
+                                    )
+                                  ],
+                                ),
                               ),
                               flex: 1,
                             ),

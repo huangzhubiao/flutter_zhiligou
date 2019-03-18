@@ -6,6 +6,7 @@ import '../redux/MyState.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import '../single/themeSingle.dart';
+import 'expandablePage.dart';
 
 class MenuCenter extends StatefulWidget {
   static String tag = 'menucenter-page';
@@ -40,75 +41,86 @@ class _MenuCenterState extends State<MenuCenter> {
                   color: Colors.white,
                   width: screenW,
                 ),
-                Container(
-                  color: themeSingelManager.getThemeColor(),
-                  height: 80,
-                  width: screenW,
-                  child: Stack(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(left: 10.0,top: 10.0),
-                        child: Image(
-                          image: AssetImage(
-                            'images/头像@2x.png',
+                GestureDetector(
+                  onTap: (){
+                    // print('object');
+                    Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (_){
+                        return new ExpandablePage();
+                      }
+                    ) );
+                  },
+                  child: Container(
+                    color: themeSingelManager.getThemeColor(),
+                    height: 80,
+                    width: screenW,
+                    child: Stack(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0,top: 10.0),
+                          child: Image(
+                            image: AssetImage(
+                              'images/头像@2x.png',
+                            ),
+                            width: 60,
+                            height: 60,
                           ),
-                          width: 60,
-                          height: 60,
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 80.0,),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'ZHILIGOU',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            Text(
-                              'ID:500000054',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        right: 10.0,
-                        height: 80.0,
-                        child: Container(
-                          child: Row(
+                        Padding(
+                          padding: EdgeInsets.only(left: 80.0,),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                '2019-12-30 到期',
-                                textAlign: TextAlign.right,
+                                'ZHILIGOU',
+                                textAlign: TextAlign.left,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14.0
+                                  fontSize: 20.0,
                                 ),
-
                               ),
-                              Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.white,
+                              Text(
+                                'ID:500000054',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ],
-                          )
-
+                          ),
                         ),
-                        
-                      )
-                    ],
+                        Positioned(
+                          right: 10.0,
+                          height: 80.0,
+                          child: Container(
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  '2019-12-30 到期',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14.0
+                                  ),
+
+                                ),
+                                Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            )
+
+                          ),
+                          
+                        )
+                      ],
+                    ),
                   ),
                 ),
+                
                 SizedBox(height: 10.0,),
                 Container(
                   height: 44.0,
