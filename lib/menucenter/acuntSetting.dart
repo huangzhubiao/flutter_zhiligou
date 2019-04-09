@@ -13,6 +13,7 @@ class AcuntSet extends StatefulWidget {
 class _AcuntSetState extends State<AcuntSet> {
   @override
   Widget build(BuildContext context) {
+    double screenW =MediaQuery.of(context).size.width;
     return StoreBuilder<MyState>(
       builder: (context,store){
         ThemeSingelManager themeSingelManager = store.state.themeSingelManager;
@@ -23,16 +24,72 @@ class _AcuntSetState extends State<AcuntSet> {
             title: Text('中心'),
             elevation: 0,
           ),
-          body: Center(
-            child: FlatButton(
-              child: Center(
-                child: Text('注销'),
+          body: Column(
+            children: <Widget>[
+              Container(
+                height: 100,
+                width: screenW,
+                color: Colors.white,
+                child: Stack(
+                  children: <Widget>[
+                    Positioned(
+                      top: 20,
+                      left: 20,
+                      child: Material(
+                        borderRadius: BorderRadius.circular(50.0),
+                        elevation: 3.0,
+                        child: Image(
+                          image: AssetImage('images/jiao_0.png'),
+                          height: 60,
+                          width: 60,
+                        ),
+                      )
+                    )
+                  ],
+                ),
               ),
-              onPressed: (){
-                Navigator.of(context).pushNamedAndRemoveUntil(LoginPage.tag, ModalRoute.withName(LoginPage.tag));;
-              },
-            ),
-          ),
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: screenW,
+                color: Colors.white,
+              ),
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: screenW,
+                color: Colors.white,
+              ),
+              SizedBox(height: 1,),
+              Container(
+                height: 60,
+                width: screenW,
+                color: Colors.white,
+              ),
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: screenW,
+                color: Colors.white,
+              ),
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: screenW,
+                color: Colors.white,
+                child: Center(
+                  child: FlatButton(
+                    child: Center(
+                      child: Text('注销用户',style: TextStyle(fontSize: 18.0,color: Colors.red),),
+                    ),
+                    onPressed: (){
+                      Navigator.of(context).pushNamedAndRemoveUntil(LoginPage.tag, ModalRoute.withName(LoginPage.tag));
+                    },
+                  ),
+                ),
+              )
+            ],
+          )
         );
       },
     );

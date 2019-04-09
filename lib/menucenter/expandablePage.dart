@@ -9,8 +9,26 @@ class ExpandablePage extends StatefulWidget {
 
 class _ExpandablePageState extends State<ExpandablePage> {
   ThemeSingelManager themeSingelManager = ThemeSingelManager();
+  List dataSource;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    dataSource = new List();
+    for (var i = 0; i < 50; i++) {
+      TestModel model =new TestModel(false, "text ${i}");
+      dataSource.add(model);      
+    }
+  }
+
+  void callback1(){
+
+    print('111111111');
+  }
+
   @override
   Widget build(BuildContext context) {
+    double screenW =MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color.fromRGBO(237, 236, 242,1),
       appBar: new AppBar(
@@ -18,16 +36,22 @@ class _ExpandablePageState extends State<ExpandablePage> {
         title: Text('展开列表'),
         elevation: 0,
       ),
-      body:ListView(
-        children: <Widget>[
-          Card1(),
-          Card2(),
-        ].map((w) {
-          return Padding(
-            padding: EdgeInsets.only(top: 15, left: 15, right: 15,),
-            child: w,
+      body:ListView.builder(
+        itemCount: dataSource.length,
+        itemBuilder: (context,index){
+          TestModel model =dataSource[index];
+          return MyButton(
+            title: Text(model.text),
+            onPress: (){
+              model.isExpand = !model.isExpand;
+              print('${model.text}');
+              setState(() {
+                
+              });
+            },
+            model: model,
           );
-        }).toList(),
+        },
       ),
           
     );
@@ -36,8 +60,136 @@ class _ExpandablePageState extends State<ExpandablePage> {
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-class Card1 extends StatelessWidget {
+class TestModel {
+  bool isExpand;
+  String text;
 
+  TestModel(bool isExpand,String text){
+    this.isExpand =isExpand;
+    this.text =text;
+  }
+}
+
+class MyButton extends StatelessWidget {
+  //callback
+  @required VoidCallback onPress;
+  Text title;
+  Icon icon;
+  double width;
+  TestModel model;
+  //constructor
+  MyButton({this.onPress,this.title,this.icon,this.width,this.model});
+  
+  GestureDetector header(bool isExpand,double screenW){
+
+    return GestureDetector(
+              onTap: onPress,
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    color: Colors.white,
+                    width: screenW,
+                    height: 56,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          left: 8,
+                          top: 8,
+                          child: Image(
+                            image: AssetImage('images/头像@2x.png'),
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
+                        Positioned(
+                          left: 56,
+                          top: 8,
+                          child: Column(
+                            children: <Widget>[
+                              Text('上海行修',style: TextStyle(fontSize: 18.0),),
+                              Text('5200000201'),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          right: 8,
+                          top: 8,
+                          child: Image(
+                            image: isExpand ? AssetImage('images/upss@2x.png'):AssetImage('images/downss@2x.png'),
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
+                        Positioned(
+                          right: 66,
+                          top: 30,
+                          child: Text('离线',style: TextStyle(fontSize: 12.0),),
+                        )
+                      ],
+                    )
+                  ),
+                  Positioned(
+                    bottom: 1,
+                    right: 4,
+                    left: 4,
+                    child: Container(
+                      color: Color.fromRGBO(1, 1, 1, 0.2),
+                      height: 1,
+                      width: screenW,
+                    ),
+                  )
+                ],
+              )
+            );
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double screenW =MediaQuery.of(context).size.width;
+    // TODO: implement build
+    return new Container(
+      width: screenW,
+      child: model.isExpand ? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            GestureDetector(
+              onTap: onPress,
+              child: Stack(
+                children: <Widget>[
+                  header(true, screenW),
+                  Positioned(
+                    bottom: 1,
+                    right: 4,
+                    left: 4,
+                    child: Container(
+                      color: Color.fromRGBO(1, 1, 1, 0.2),
+                      height: 1,
+                      width: screenW,
+                    ),
+                  )
+                ],
+              )
+            ),
+            Container(
+              height: 44,
+              width: screenW,
+              color: Color.fromRGBO(237, 236, 242,1),
+              child: Text('data'),
+            ),
+            Container(
+              height: 44,
+              width: screenW,
+              color: Color.fromRGBO(237, 236, 242,1),
+              child: Text('data'),
+            ),
+          ],
+        ) :header(false, screenW)
+    );
+  }
+}
+
+class Card1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(

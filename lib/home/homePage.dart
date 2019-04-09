@@ -401,7 +401,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   ),
                 ),
                 Positioned(
-                  bottom: screenH * 1 / 10,
+                  bottom: screenH * 1 / 12,
                   left: 0,
                   right: 0,
                   child: Row(

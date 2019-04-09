@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../home/homePage.dart';
 import '../single/themeSingle.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   
@@ -18,18 +19,49 @@ class _LoginPageState extends State<LoginPage> {
   var _userPassController = new TextEditingController();
   var _userNameController = new TextEditingController();
   ThemeSingelManager themeManager =ThemeSingelManager();
+  bool isRemenberPassword = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initData();
+    _userPassController.addListener((){
+      print('${_userPassController.text}');
+      updatePassword();
+    });
+  }
+  updatePassword() async{
+    if (isRemenberPassword) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('counter',_userPassController.text);
+    }
+  }
+  initData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String counter = prefs.getString('counter') ;
+    if (counter.length == 0) {
+      isRemenberPassword =false;
+    }else{
+      isRemenberPassword =true;
+      _userPassController.text =counter;
+    }
+    setState(() {
+      
+    });
+  }
   @override
   Widget build(BuildContext context) {
-
     final screenH = MediaQuery.of(context).size.height;
     final screenW =MediaQuery.of(context).size.width;
-
     final email = TextField(
       keyboardType: TextInputType.emailAddress,
+      cursorColor: Colors.white,
       autofocus: false,
       controller: _userNameController,
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
           hintText: '手机号',
+          hintStyle: TextStyle(color: Colors.white),
           contentPadding: EdgeInsets.fromLTRB(2.0, 5.0, 10.0, 10.0),
           border: InputBorder.none),
     );
@@ -38,8 +70,10 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       controller: _userPassController,
       obscureText: true,
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
           hintText: 'Password',
+          hintStyle: TextStyle(color: Colors.white),
           contentPadding: EdgeInsets.fromLTRB(2.0, 5.0, 10.0, 10.0),
           border: InputBorder.none),
     );
@@ -69,7 +103,21 @@ class _LoginPageState extends State<LoginPage> {
       ),
       onPressed: () {},
     );
-
+    _incrementCounter() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String counter = prefs.getString('counter') ;
+      print('Pressed $counter times.');
+      if (isRemenberPassword) {
+        await prefs.setString('counter', '');
+        isRemenberPassword =false;
+      }else{
+        await prefs.setString('counter', password.controller.text);
+        isRemenberPassword =true;
+      }
+      setState(() {
+        
+      });
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
@@ -185,14 +233,30 @@ class _LoginPageState extends State<LoginPage> {
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(left: 50.0),
-                          child: Text('记住密码',textAlign: TextAlign.left,),
+                          child: InkWell(
+                            onTap: (){
+                              print('object');
+                              _incrementCounter();
+                            },
+                            child: Row(
+                            children: <Widget>[
+                             Image(
+                                image: isRemenberPassword ? AssetImage('images/选中@2x.png'):AssetImage('images/不选@2x.png'),
+                                height: 16.0,
+                                width: 16.0,
+                              ),
+                              SizedBox(width: 8,),
+                              Text('记住密码',textAlign: TextAlign.left,style: TextStyle(color: Colors.white),),
+                            ],
+                          ),
+                          )
                         ),
                         flex: 1,
                       ),
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(right: 50.0),
-                          child: Text('忘记密码',textAlign: TextAlign.right,),
+                          child: Text('忘记密码',textAlign: TextAlign.right,style: TextStyle(color: Colors.white),),
                         ),
                         flex: 1,
                       )
@@ -203,7 +267,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Positioned(
-            bottom: 50.0,
+            bottom: 30.0,
             child: Container(
               width: screenW,
               child: Column(
@@ -232,7 +296,7 @@ class _LoginPageState extends State<LoginPage> {
                       Expanded(
                         child: Text('第三方登陆',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18.0)),
+                        style: TextStyle(fontSize: 18.0,color: Colors.white)),
                         flex: 1,
                       ),
                       Expanded(
@@ -256,16 +320,24 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(height: 20,),
                   Row(
                     
                     children: <Widget>[
                       Expanded(
-                        child: Text('微信登录',textAlign: TextAlign.center,),
+                        child: Image(
+                          image: AssetImage('images/微信登录.png'),
+                          height: 40.0,
+                          width: 40.0,
+                        ),
                         flex: 1,
                       ),
                       Expanded(
-                        child: Text('qq登录',textAlign: TextAlign.center,),
+                        child:Image(
+                          image: AssetImage('images/QQ登录.png'),
+                          height: 40.0,
+                          width: 40.0,
+                        ),
                         flex: 1,
                       )
                     ],
