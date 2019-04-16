@@ -5,6 +5,7 @@ enum ToDoListAction { add }
 
 class ToDoListActionCreator {
   static Action add(ToDoState state) {
+    print('object111111111111 ${state.title}');
     return Action(ToDoListAction.add, payload: state);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../home/homePage.dart';
 import '../single/themeSingle.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import './register/registerPage.dart';
 
 class LoginPage extends StatefulWidget {
   
@@ -138,10 +139,20 @@ class _LoginPageState extends State<LoginPage> {
               flex: 1,
             ),
             Expanded(
-              child: Text(
-                '注册',
-                textAlign: TextAlign.right,
+              child: GestureDetector(
+                onTap: (){
+                  print('注册');
+                  Navigator.of(context).push(new MaterialPageRoute(
+                     builder: (_){
+                       return new RegisterPage().buildPage(<String, dynamic>{});
+                     } 
+                    ));
+                },
+                child: Text(
+                  '注册',
+                  textAlign: TextAlign.right,
                 ),
+              ),
               flex: 1,
             ),
           ],
