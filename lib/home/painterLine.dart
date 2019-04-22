@@ -53,7 +53,7 @@ int _counter = 0;
         height: screenH,
         decoration: BoxDecoration(
           image: new DecorationImage(
-            image: AssetImage('images/background.png'),
+            image: AssetImage(themeSingelManager.getImageName()),
             fit: BoxFit.cover
           ),
         ),

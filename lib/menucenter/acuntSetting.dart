@@ -3,6 +3,7 @@ import '../login/login_page.dart';
 import '../redux/MyState.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../single/themeSingle.dart';
+import 'web.dart';
 
 class AcuntSet extends StatefulWidget {
   static String tag = 'acuntset-page';
@@ -31,6 +32,7 @@ class _AcuntSetState extends State<AcuntSet> {
                 width: screenW,
                 color: Colors.white,
                 child: Stack(
+                  alignment: Alignment.centerLeft,
                   children: <Widget>[
                     Positioned(
                       top: 20,
@@ -44,6 +46,10 @@ class _AcuntSetState extends State<AcuntSet> {
                           width: 60,
                         ),
                       )
+                    ),
+                    Positioned(
+                      left: 90,
+                      child: Text('智锂狗GPS',style: TextStyle(fontSize: 24.0),)
                     )
                   ],
                 ),
@@ -53,24 +59,70 @@ class _AcuntSetState extends State<AcuntSet> {
                 height: 60,
                 width: screenW,
                 color: Colors.white,
+                child: Stack(
+                  alignment: Alignment.centerLeft,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text('修改密码',style: TextStyle(fontSize: 20.0),),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 10,),
               Container(
                 height: 60,
                 width: screenW,
                 color: Colors.white,
+                child: GestureDetector(
+                  onTap: (){
+                    print('object');
+                    Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (_){
+                        return new WebBrowser();
+                      }
+                    ));
+                  },
+                  child: Stack(
+                    alignment: Alignment.centerLeft,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text('产品说明',style: TextStyle(fontSize: 20.0),),
+                      ),
+                    ],
+                  ),
+                )
               ),
-              SizedBox(height: 1,),
+              SizedBox(height: 2,),
               Container(
                 height: 60,
                 width: screenW,
                 color: Colors.white,
+                child: Stack(
+                  alignment: Alignment.centerLeft,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text('关于',style: TextStyle(fontSize: 20.0),),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 10,),
               Container(
                 height: 60,
                 width: screenW,
                 color: Colors.white,
+                child: Stack(
+                  alignment: Alignment.centerLeft,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text('清空缓存',style: TextStyle(fontSize: 20.0),),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 10,),
               Container(

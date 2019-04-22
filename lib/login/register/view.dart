@@ -15,23 +15,11 @@ Widget buildView(RegisterState state, Dispatch dispatch, ViewService viewService
       title: Text('注册'),
       elevation: 0,
     ),
-    body: Center(
-      child: Column(
-        children: <Widget>[
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-          viewService.buildComponent('report'),
-        ],
-      )
+    body: ListView.builder(
+      itemCount: 60,
+      itemBuilder: (BuildContext context,int index){
+        return viewService.buildComponent('report');
+      },
     ),
     floatingActionButton: FloatingActionButton(
       onPressed: (){

@@ -175,13 +175,125 @@ class MyButton extends StatelessWidget {
               height: 44,
               width: screenW,
               color: Color.fromRGBO(237, 236, 242,1),
-              child: Text('data'),
+              child: Stack(
+                alignment: Alignment.centerLeft,
+                children: <Widget>[
+                  Positioned(
+                    left: 15,
+                    child: Text(
+                      '断开连接',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              height: 0.8,
+              width: screenW,
+              color: Color.fromRGBO(0, 0, 0, 0.4),
             ),
             Container(
               height: 44,
               width: screenW,
               color: Color.fromRGBO(237, 236, 242,1),
-              child: Text('data'),
+              child: Stack(
+                alignment: Alignment.centerLeft,
+                children: <Widget>[
+                  Positioned(
+                    left: 15,
+                    child: Text(
+                      '修改车牌',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              height: 0.8,
+              width: screenW,
+              color: Color.fromRGBO(0, 0, 0, 0.4),
+            ),
+            Container(
+              height: 44,
+              width: screenW,
+              color: Color.fromRGBO(237, 236, 242,1),
+              child: Stack(
+                alignment: Alignment.centerLeft,
+                children: <Widget>[
+                  Positioned(
+                    left: 15,
+                    child: Text(
+                      '修改密码',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              height: 0.8,
+              width: screenW,
+              color: Color.fromRGBO(0, 0, 0, 0.4),
+            ),
+            Container(
+              height: 44,
+              width: screenW,
+              color: Color.fromRGBO(237, 236, 242,1),
+              child: Stack(
+                alignment: Alignment.centerLeft,
+                children: <Widget>[
+                  Positioned(
+                    left: 15,
+                    child: Text(
+                      '修改别名',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              height: 0.8,
+              width: screenW,
+              color: Color.fromRGBO(0, 0, 0, 0.4),
+            ),
+            Container(
+              height: 44,
+              width: screenW,
+              color: Color.fromRGBO(237, 236, 242,1),
+              child: Stack(
+                alignment: Alignment.centerLeft,
+                children: <Widget>[
+                  Positioned(
+                    left: 15,
+                    child: Text(
+                      '技术参赛',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              height: 0.8,
+              width: screenW,
+              color: Color.fromRGBO(0, 0, 0, 0.4),
+            ),
+            Container(
+              height: 44,
+              width: screenW,
+              color: Color.fromRGBO(237, 236, 242,1),
+              child: Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                Text(
+                    '移除设备',
+                    style: TextStyle(fontSize: 18.0,color: Colors.red),
+                  ),
+                ],
+              ),
             ),
           ],
         ) :header(false, screenW)

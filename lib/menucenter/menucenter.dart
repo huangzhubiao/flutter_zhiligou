@@ -8,6 +8,7 @@ import 'package:redux/redux.dart';
 import '../single/themeSingle.dart';
 import 'expandablePage.dart';
 import './fish_redux/page_redux/test_redux.dart';
+import './topup/page.dart';
 import 'package:fish_redux/fish_redux.dart';
 import './fish_redux/state.dart';
 
@@ -29,6 +30,7 @@ class _MenuCenterState extends State<MenuCenter> {
       builder: (context,store){
         ThemeSingelManager themeSingelManager =store.state.themeSingelManager;
         return Scaffold(
+          resizeToAvoidBottomPadding: false,
           backgroundColor: Color.fromRGBO(237, 236, 242,1),
           appBar: new AppBar(
             backgroundColor: themeSingelManager.getThemeColor(),
@@ -313,13 +315,7 @@ class _MenuCenterState extends State<MenuCenter> {
                   onTap: (){
                     Navigator.of(context).push(new MaterialPageRoute(
                      builder: (_){
-                       return new TestReduxPage().buildPage(<String, dynamic>{});
-                      // ToDoState state =new ToDoState();
-                      // state.uniqueId = '5200000052';
-                      // state.title = 'helloworld';
-                      // state.desc = '123456789101213141516171819';
-                      // state.isDone = true;
-                      // return TestReduxPage().buildPage();
+                       return new TopupPage().buildPage(<String, dynamic>{});
                      } 
                     ));
                   },
