@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
 
     /*创建动画控制类对象*/
     controller = new AnimationController(
-        duration: const Duration(milliseconds: 2500),
+        duration: const Duration(milliseconds: 600),
         vsync: this);
 
     /*创建补间对象*/
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
 
       /*创建动画控制类对象*/
     controller1 = new AnimationController(
-        duration: const Duration(milliseconds: 2500),
+        duration: const Duration(milliseconds: 600),
         vsync: this);
 
     /*创建补间对象*/
@@ -243,20 +243,65 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                             alignment: AlignmentDirectional.center,
                             children: <Widget>[
                               Transform(
-                                child: Image(
-                                  image: AssetImage('images/home_image.png'),
-                                  width: screenW * 2 / 3,
-                                  height: screenW * 2 / 3,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: <Widget>[
+                                    Image(
+                                      image: AssetImage('images/home_image.png'),
+                                      width: screenW * 2 / 3,
+                                      height: screenW * 2 / 3,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          '50%',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.yellow,
+                                            fontSize: 24.0,
+                                          ),      
+                                        ),
+                                        SizedBox(height: 4,),
+                                        Text(
+                                          '电量',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.yellow,
+                                          fontSize: 16.0,
+                                          ),      
+                                        ),
+                                      ],
+                                    )
+                                  ],
                                 ),
                                 transform: Matrix4.identity()..rotateY(trantion1),
                                 alignment: Alignment.center,
                               ),
                               GestureDetector(
                                 child:Transform(
-                                  child: Image(
-                                    image: AssetImage('images/dial_dark_green.png'),
-                                    width: screenW * 2 / 3,
-                                    height: screenW * 2 / 3,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: <Widget>[
+                                      Image(
+                                        image: AssetImage('images/dial_dark_green.png'),
+                                        width: screenW * 2 / 3,
+                                        height: screenW * 2 / 3,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Image(
+                                        image: AssetImage('images/指针.png'),
+                                        width: screenW * 2 / 3,
+                                        height: screenW * 2 / 3,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Positioned(
+                                        bottom:(screenW * 2 / 3) * 1 / 6 ,
+                                        child: Text('充放功率',style: TextStyle(color: Colors.white,fontSize: 16.0),),
+                                      ),
+                                      Positioned(
+                                        bottom:(screenW * 2 / 3) / 4 + 4,
+                                        child: Text('0w',style: TextStyle(color: Colors.white,fontSize: 16.0),),
+                                      )
+                                    ],
                                   ),
                                   transform: Matrix4.identity()..rotateY(trantion2),
                                   alignment: Alignment.center,
@@ -276,26 +321,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                                   height: screenW * 2 / 3,
                                 ),
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    '50%',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color: Colors.yellow,
-                                      fontSize: 24.0,
-                                    ),      
-                                  ),
-                                  SizedBox(height: 4,),
-                                  Text(
-                                    '电量',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color: Colors.yellow,
-                                    fontSize: 16.0,
-                                    ),      
-                                  ),
-                                ],
-                              )
+                              
                             ],
                           ),
                         ),
