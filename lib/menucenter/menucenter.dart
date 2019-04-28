@@ -11,6 +11,7 @@ import './fish_redux/page_redux/test_redux.dart';
 import './topup/page.dart';
 import 'package:fish_redux/fish_redux.dart';
 import './fish_redux/state.dart';
+import '../timerLoad/timerLoader.dart';
 
 class MenuCenter extends StatefulWidget {
   static String tag = 'menucenter-page';
@@ -225,46 +226,55 @@ class _MenuCenterState extends State<MenuCenter> {
                   ),
                 ),
                 SizedBox(height: 10.0,),
-                Container(
-                  height: 44.0,
-                  width: screenW,
-                  color: Colors.white,
-                  child: Stack(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 7,
-                          left: 10,
-                        ),
-                        child: Image(
-                          image: AssetImage('images/qq1@2x.png'),
-                          height: 30.0,
-                          width: 30.0,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 48.0,),
-                        child:Align(
-                          alignment: Alignment.centerLeft,
-                          child:Text(
-                            'QQ讨论群',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 18.0),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (_){
+                        return new MyTimerLoader();
+                      }
+                    ));
+                  },
+                  child: Container(
+                    height: 44.0,
+                    width: screenW,
+                    color: Colors.white,
+                    child: Stack(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: 7,
+                            left: 10,
                           ),
-                        ) 
-                        
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 10.0),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            Icons.chevron_right,
-                            color: Colors.grey,
-                          )
+                          child: Image(
+                            image: AssetImage('images/qq1@2x.png'),
+                            height: 30.0,
+                            width: 30.0,
+                          ),
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: EdgeInsets.only(left: 48.0,),
+                          child:Align(
+                            alignment: Alignment.centerLeft,
+                            child:Text(
+                              'QQ讨论群',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                          ) 
+                          
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.0),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: Colors.grey,
+                            )
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 2.0,),
