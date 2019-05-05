@@ -67,7 +67,7 @@ class _MyTimerLoaderState extends State<MyTimerLoader> {
   }
   List<Widget> initSeconds(double screenW,double screenH){
     List<Widget> tiles = [];
-    for(int i = 0; i <= 15; i ++){
+    for(int i = 1; i <= 15; i ++){
       double testcos3 = cos((pi/2) * i/15) * (screenW / 2);
       double testsin3 = sin((pi/2) * i/15) * (screenW / 2);
       Positioned positioned3 = new Positioned(
@@ -81,6 +81,12 @@ class _MyTimerLoaderState extends State<MyTimerLoader> {
             decoration: BoxDecoration(
               color: Colors.blueGrey,
             ),
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: <Widget>[
+                Text("${i + 45}")
+              ],
+            ),
           ),
           angle:(pi/2) * i/15,
         )
@@ -88,27 +94,85 @@ class _MyTimerLoaderState extends State<MyTimerLoader> {
       tiles.add(positioned3);
     }
 
-    // for(int i = 0; i <= 15; i ++){
-    //   double testcos3 = cos((pi/2) * i/15) * (screenW / 2);
-    //   double testsin3 = sin((pi/2) * i/15) * (screenW / 2);
-    //   Positioned positioned3 = new Positioned(
-    //     left: (screenW/2 + testsin3) - 10,
-    //     top: (screenW/2) - testcos3,
-    //     child: Transform.rotate(
-    //       alignment: Alignment.topCenter,
-    //       child: Container(
-    //         height: 40,
-    //         width: 20,
-    //         decoration: BoxDecoration(
-    //           color: Colors.blueGrey,
-    //         ),
-    //       ),
-    //       angle:(pi/2) * i/15,
-    //     )
-    //   );
-    //   tiles.add(positioned3);
-    // }
+    for(int i = 1; i <= 15; i ++){
+      double testcos3 = cos((pi/2) * i/15) * (screenW / 2);
+      double testsin3 = sin((pi/2) * i/15) * (screenW / 2);
+      Positioned positioned3 = new Positioned(
+        left: (screenW/2 + testcos3) - 10,
+        top: (screenW/2) + testsin3,
+        child: Transform.rotate(
+          alignment: Alignment.topCenter,
+          child: Container(
+            height: 40,
+            width: 20,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+            ),
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: <Widget>[
+                Text("$i")
+              ],
+            ),
+          ),
+          angle:(pi/2) + (pi/2) * i/15,
+        )
+      );
+      tiles.add(positioned3);
+    }
+    for(int i = 1; i <= 15; i ++){
+      double testcos3 = cos((pi/2) * i/15) * (screenW / 2);
+      double testsin3 = sin((pi/2) * i/15) * (screenW / 2);
+      Positioned positioned3 = new Positioned(
+        left: (screenW/2 - testsin3) - 10,
+        top: (screenW/2) + testcos3,
+        child: Transform.rotate(
+          alignment: Alignment.topCenter,
+          child: Container(
+            height: 40,
+            width: 20,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+            ),
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: <Widget>[
+                Text("${i + 15}")
+              ],
+            ),
+          ),
+          angle:pi + (pi/2) * i/15,
+        )
+      );
+      tiles.add(positioned3);
+    }
 
+    for(int i = 1; i <= 15; i ++){
+      double testcos3 = cos((pi/2) * i/15) * (screenW / 2);
+      double testsin3 = sin((pi/2) * i/15) * (screenW / 2);
+      Positioned positioned3 = new Positioned(
+        left: (screenW/2 - testcos3) - 10,
+        top: (screenW/2) - testsin3,
+        child: Transform.rotate(
+          alignment: Alignment.topCenter,
+          child: Container(
+            height: 40,
+            width: 20,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+            ),
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: <Widget>[
+                Text("${i + 30}")
+              ],
+            ),
+          ),
+          angle:0 + pi + pi/2 + (pi/2) * i/15,
+        )
+      );
+      tiles.add(positioned3);
+    }
     return tiles;
   }
 }
